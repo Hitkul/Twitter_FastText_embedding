@@ -8,8 +8,6 @@ input_file_path = "data/raw_twitter_data.txt"
 
 def remove_punctuation(s):
     list_punctuation = list(string.punctuation)
-    list_punctuation.remove('@')
-    list_punctuation.remove('#')
     for i in list_punctuation:
         s = s.replace(i,'')
     return s
