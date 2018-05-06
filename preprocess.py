@@ -2,7 +2,11 @@ from __future__ import print_function
 import string
 import re
 
-input_file_path = "data/raw_twitter_data.txt"
+input_file_path = 'data/raw_twitter_data.txt'
+output_file_path = 'data/clean_twitter_level2.txt'
+
+input_file_path = "temp.txt"
+output_file_path = 'out.txt'
 
 
 
@@ -38,10 +42,19 @@ def clean(sentence,level_flag = 0):
         tokens = [remove_punctuation(w) for w in tokens]
         return ' '.join(tokens)
 
+count = 0
+def wraper_fun(s,flag,l):
+    global count
+    print(count,l,end='\r')
+    count+=1
+    return clean(s,level_flag=flag)
+
 with open(input_file_path,'r') as fin:
     ele = fin.readlines()
-    print(len(ele))
-    print(ele[0])
-    print(ele[1])
-    print(ele[2])
-    print(ele[3])
+    length = len(ele)
+    clean_sentences = [wraper_fun(s,2,length) for s in ele]
+     
+print("writing to file")
+with open('data/clean_twitter_level2.txt','w') as f:
+    f.write('\n'.join(clean_sentences))
+    
