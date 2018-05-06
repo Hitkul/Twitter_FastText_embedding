@@ -37,3 +37,11 @@ def clean(sentence,level_flag = 0):
         tokens = sentence.split()
         tokens = [remove_punctuation(w) for w in tokens]
         return ' '.join(tokens)
+
+with open(input_file_path,'r') as fin:
+    ele = fin.readlines()
+    print(len(ele))
+    print(ele[0])
+    print(ele[1])
+    print(ele[2])
+    print(ele[3])
