@@ -1,4 +1,5 @@
 from collections import Counter
+import json
 
 input_file_path = 'temp.txt'
 output_path = 'twitter_fasttext'
@@ -11,4 +12,5 @@ counts = Counter()
 for line in lines:
     counts.update(word for word in line.split())
 
-print(counts)
+with open('test.json','w') as fout:
+    json.dump(counts,fout,indent=4)
