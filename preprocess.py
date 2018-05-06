@@ -8,6 +8,8 @@ input_file_path = "data/raw_twitter_data.txt"
 
 def remove_punctuation(s):
     list_punctuation = list(string.punctuation)
+    list_punctuation.remove('@')
+    list_punctuation.remove('#')
     for i in list_punctuation:
         s = s.replace(i,'')
     return s
@@ -26,11 +28,14 @@ def clean(sentence,level_flag = 0):
         return tokens
     
     if level_flag != 0:
-        sentence = ' '.join(tokens)
         sentence = re.sub(r"\@(\w+)", "", sentence)
         sentence = sentence.replace('#','')
         if level_flag == 1:
-            return sentence
+            tokens = sentence.split()
+            tokens = [remove_punctuation(w) for w in tokens]
+            return ' '.join(tokens)
         sentence = re.sub(r'(?P<url>https?://[^\s]+)', r'', sentence)
-        sentence = re.sub(r'([^a-zA-Z])', '',sentence )
-        return sentence
+        sentence = re.sub(r'([^a-zA-Z ])','',sentence )
+        tokens = sentence.split()
+        tokens = [remove_punctuation(w) for w in tokens]
+        return ' '.join(tokens)
