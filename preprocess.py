@@ -55,6 +55,6 @@ with open(input_file_path,'r') as fin:
     clean_sentences = [wraper_fun(s,2,length) for s in ele]
      
 print("writing to file")
-with open('data/clean_twitter_level2.txt','w') as f:
+with open(output_file_path,'w') as f:
     f.write('\n'.join(clean_sentences))
     
