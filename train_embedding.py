@@ -2,13 +2,16 @@ from collections import Counter
 import json
 import fasttext
 
+# input_file_path = 'data/clean_twitter_level2.txt'
 input_file_path = 'temp.txt'
-output_path = 'twitter_fasttext_clean_level2'
+output_path = 'models/twitter_fasttext_clean_level2'
 output_path_json = "tf_clean_level2.json"
 
 print("reading file")
 with open(input_file_path,'r') as fin:
     lines = fin.readlines()
+
+lines = lines[:100]
 
 number_of_tweets = len(lines)
 
